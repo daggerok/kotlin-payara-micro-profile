@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="2019072501_create_people_table" author="Maksim Kostromin (daggerok@gmail.com)">
+        <createSequence startValue="1" incrementBy="1" ordered="true" sequenceName="people_sequence"/>
+
+        <createTable tableName="people">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="name" type="VARCHAR(36)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="id" constraintName="people_pkey" tableName="people"/>
+
+        <createIndex indexName="people_name_index" tableName="people">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
